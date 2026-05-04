@@ -1,7 +1,7 @@
 package iut.bad;
 
 
-public class Homme {
+public class Homme extends Humain {
     private String nom;
     private String prenom;
     private int age;
@@ -11,7 +11,7 @@ public class Homme {
         this.prenom = prenom;
         this.age = age;
     }
-    
+
     // Getters
     public String getNom() { return nom; }
     public String getPrenom() { return prenom; }
