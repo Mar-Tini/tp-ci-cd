@@ -1,7 +1,7 @@
 package iut.bad;
 
 public class Humain {
-    
+
     protected String nom;
     protected String prenom;
     protected int age;
@@ -15,4 +15,8 @@ public class Humain {
     public String getNom() { return nom; }
     public String getPrenom() { return prenom; }
     public int getAge() { return age; }
+
+    public void details() {
+        System.out.println(nom + " " + prenom + ", " + age + " ans");
+    }
 }
