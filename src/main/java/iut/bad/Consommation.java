@@ -1,5 +1,6 @@
 package iut.bad;
 
-public class Consommation {
-    
+public interface Consommation {
+    void manger();
+    void boire();
 }
