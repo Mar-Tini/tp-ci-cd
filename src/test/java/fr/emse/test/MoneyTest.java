@@ -1,27 +1,35 @@
 package fr.emse.test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MoneyTest {
     
+    private Money f12CHF;
+    private Money f14CHF;
+
+    @BeforeEach
+    public void setUp() {
+        f12CHF = new Money(12, "CHF");
+        f14CHF = new Money(14, "CHF");
+    }
+
+
     @Test
     public void testSimpleAdd() {
-        Money m12CHF = new Money(12, "CHF");
-        Money m14CHF = new Money(14, "CHF");
         Money expected = new Money(26, "CHF");
-        Money result   = m12CHF.add(m14CHF);
-        assertTrue(expected.equals(result));  
+        Money result   = f12CHF.add(f14CHF);
+        assertEquals(expected, result); 
     }
 
     @Test
     public void testEquals() {
-        Money m12CHF = new Money(12, "CHF");
-        Money m14CHF = new Money(14, "CHF");
+        assertTrue(!f12CHF.equals(null));
+        assertEquals(f12CHF, f12CHF);
+        assertEquals(f12CHF, new Money(12, "CHF"));
+        assertTrue(!f12CHF.equals(f14CHF));
 
-        assertTrue(!m12CHF.equals(null));
-        assertEquals(m12CHF, m12CHF);
-        assertEquals(m12CHF, new Money(12, "CHF"));
-        assertTrue(!m12CHF.equals(m14CHF));
     }
 
 }
