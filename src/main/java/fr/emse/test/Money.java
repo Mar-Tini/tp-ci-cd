@@ -1,6 +1,7 @@
 package fr.emse.test;
 
 public class Money implements IMoney {
+
     private int fAmount;
     private String fCurrency;
 
@@ -9,16 +10,24 @@ public class Money implements IMoney {
         fCurrency = currency;
     }
 
-    public int amount() {
-        return fAmount;
+    public int amount() {return fAmount;}
+    public String currency() {return fCurrency;}
+
+    @Override
+    public IMoney add(IMoney m) {
+        return m.addMoney(this);
     }
 
-    public String currency() {
-        return fCurrency;
+    @Override
+    public IMoney addMoney(Money m) {
+        if (m.currency().equals(currency()))
+            return new Money(amount() + m.amount(), currency());
+        return new MoneyBag(this, m);
     }
 
-    public Money add(Money m) {
-        return new Money(amount() + m.amount(), currency());
+    @Override
+    public IMoney addMoneyBag(MoneyBag mb) {
+        return mb.addMoney(this);
     }
 
     @Override
@@ -33,24 +42,5 @@ public class Money implements IMoney {
     public int hashCode() {
         return fCurrency.hashCode() + fAmount;
     }
-
-   
-    @Override
-    public IMoney add(IMoney m) {
-        return m.addMoney(this);
-    }
-
-    @Override
-    public IMoney addMoney(Money m) {
-        if (m.currency().equals(currency()))
-            return new Money(amount() + m.amount(), currency());
-        return (IMoney) new MoneyBag(this, m);
-    }
-
-    @Override
-    public IMoney addMoneyBag(MoneyBag mb) {
-        return mb.addMoney(this);
-    }
-
 
 }

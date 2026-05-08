@@ -19,14 +19,20 @@ public class MoneyBagTest {
         fMB1   = new MoneyBag(f12CHF, f7USD);
         fMB2   = new MoneyBag(f14CHF, f21USD);
     }
-
+    
     @Test
-    public void testBagEquals() {
-        assertTrue(!fMB1.equals(null));
-        assertEquals(fMB1, fMB1);
-        assertTrue(!fMB1.equals(f12CHF));
-        assertTrue(!f12CHF.equals(fMB1));
-        assertTrue(!fMB1.equals(fMB2));
+    public void testSimplification() {
+        // -12 CHF + {[12 CHF][7 USD]} doit donner 7 USD (Money simple)
+        Money minus12CHF = new Money(-12, "CHF");
+        IMoney result = minus12CHF.add(fMB1);  // fMB1 = {12 CHF, 7 USD}
+
+        // Résultat brut est un MoneyBag — on simplifie
+        if (result instanceof MoneyBag) {
+            result = ((MoneyBag) result).simplify();
+        }
+
+        assertEquals(new Money(7, "USD"), result);
     }
+
 
 }

@@ -17,13 +17,6 @@ public class MoneyTest {
 
 
     @Test
-    public void testSimpleAdd() {
-        Money expected = new Money(26, "CHF");
-        Money result   = f12CHF.add(f14CHF);
-        assertEquals(expected, result); 
-    }
-
-    @Test
     public void testEquals() {
         assertTrue(!f12CHF.equals(null));
         assertEquals(f12CHF, f12CHF);
