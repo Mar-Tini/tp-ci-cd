@@ -43,4 +43,11 @@ public class MoneyBag {
     public int hashCode() {
         return fMonies.hashCode();
     }
+
+    public IMoney addMoney(Money money) {
+        Money[] newMonies = new Money[fMonies.size()];
+        for (int i = 0; i < fMonies.size(); i++)
+            newMonies[i] = fMonies.get(i);
+        return new MoneyBag(newMonies).addMoney(money);
+    }
 }
