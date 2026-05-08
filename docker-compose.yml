@@ -15,5 +15,16 @@ services:
       - .:/app
       - maven_repo:/root/.m2
     command: mvn test
+
+  jenkins:
+    image: jenkins/jenkins:latest
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    restart: unless-stopped
+
 volumes:
   maven_repo: 
+  jenkins_home:
