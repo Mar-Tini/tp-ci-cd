@@ -20,4 +20,18 @@ public class Money {
     public Money add(Money m) {
         return new Money(amount() + m.amount(), currency());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Money)) return false;
+        Money other = (Money) o;
+        return fAmount == other.fAmount
+            && fCurrency.equals(other.fCurrency);
+    }
+
+    @Override
+    public int hashCode() {
+        return fCurrency.hashCode() + fAmount;
+    }
+
 }
