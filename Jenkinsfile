@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh '''
+                bat '''
                 docker run --rm \
                 -v $WORKSPACE:/workspace  \
                 -w /workspace  \
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '''
+                bat '''
                 docker run --rm \
                 -v $WORKSPACE:/workspace  \
                 -w /workspace  \
