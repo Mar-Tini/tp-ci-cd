@@ -22,11 +22,11 @@ public class MoneyBagTest {
     
     @Test
     public void testSimplification() {
-        // -12 CHF + {[12 CHF][7 USD]} doit donner 7 USD (Money simple)
-        Money minus12CHF = new Money(-12, "CHF");
-        IMoney result = minus12CHF.add(fMB1);  // fMB1 = {12 CHF, 7 USD}
 
-        // Résultat brut est un MoneyBag — on simplifie
+        Money minus12CHF = new Money(-12, "CHF");
+        IMoney result = minus12CHF.add(fMB1); 
+
+
         if (result instanceof MoneyBag) {
             result = ((MoneyBag) result).simplify();
         }
