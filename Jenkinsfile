@@ -9,25 +9,31 @@ pipeline {
             }
         }
 
+        stage('Clean') {
+        steps {
+            bat 'if exist target rmdir /s /q target'
+        }
+}
+
         stage('Test') {
             steps {
-                sh '''
-                docker run --rm \
-                -v $WORKSPACE:/workspace  \
-                -w /workspace  \
-                maven:3.9.9-eclipse-temurin-17 \
-                mvn clean test
+                bat '''
+                docker run --rm ^
+                -v %WORKSPACE%:/workspace  ^
+                -w /workspace  ^
+                maven:3.9.9-eclipse-temurin-17 ^
+                mvn clean test 
                 '''
             }
         }
 
         stage('Build') {
             steps {
-                sh '''
-                docker run --rm \
-                -v $WORKSPACE:/workspace  \
-                -w /workspace  \
-                maven:3.9.9-eclipse-temurin-17 \
+                bat '''
+                docker run --rm ^
+                -v %WORKSPACE%:/workspace  ^
+                -w /workspace  ^
+                maven:3.9.9-eclipse-temurin-17 ^
                 mvn package -DskipTests
                 '''
             }
@@ -36,10 +42,10 @@ pipeline {
 
     post {
         always {
-            junit 'target/surefire-reports/*.xml'
+            junit '**/surefire-reports/*.xml'
         }
          success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            archiveArtifacts artifacts: '**/*.jar', fingerprint: true
         }
     }
 }
