@@ -11,7 +11,7 @@ public class MoneyTest {
 
     @BeforeEach
     public void setUp() {
-        f12CHF = new Money(12, "CHF");
+        f12CHF = new Money(13, "CHF");
         f14CHF = new Money(14, "CHF");
     }
 
@@ -20,7 +20,7 @@ public class MoneyTest {
     public void testEquals() {
         assertTrue(!f12CHF.equals(null));
         assertEquals(f12CHF, f12CHF);
-        assertEquals(f12CHF, new Money(12, "CHF"));
+        assertEquals(f12CHF, new Money(13, "CHF"));
         assertTrue(!f12CHF.equals(f14CHF));
 
     }
