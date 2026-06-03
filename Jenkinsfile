@@ -27,27 +27,27 @@ pipeline {
             }
         }
 
-      stage('SonarCloud') {
+        stage('SonarCloud') {
 
-        steps {
+            steps {
 
-            withCredentials([string(
-                credentialsId: 'sonar-token',
-                variable: 'SONAR_TOKEN'
-            )]) {
+                withCredentials([string(
+                    credentialsId: 'sonar-token',
+                    variable: 'SONAR_TOKEN'
+                )]) {
 
-                bat '''
-                docker run --rm ^
-                -v %WORKSPACE%:/workspace ^
-                -w /workspace ^
-                maven:3.9.9-eclipse-temurin-17 ^
-                mvn sonar:sonar ^
-                -Dsonar.projectKey=Mar-Tini_tp-ci-cd ^
-                -Dsonar.organization=mar-tini ^
-                -Dsonar.host.url=https://sonarcloud.io ^
-                -Dsonar.token=%SONAR_TOKEN%
-                '''
-            }
+                    bat '''
+                    docker run --rm ^
+                    -v %WORKSPACE%:/workspace ^
+                    -w /workspace ^
+                    maven:3.9.9-eclipse-temurin-17 ^
+                    mvn sonar:sonar ^
+                    -Dsonar.projectKey=Mar-Tini_tp-ci-cd ^
+                    -Dsonar.organization=mar-tini ^
+                    -Dsonar.host.url=https://sonarcloud.io ^
+                    -Dsonar.token=%SONAR_TOKEN%
+                    '''
+                }
         }
     }
 
@@ -61,6 +61,16 @@ pipeline {
                 mvn package -DskipTests
                 '''
             }
+        }
+    }
+
+        stage('Docker Build') {
+
+        steps {
+
+            bat '''
+            docker build -t spring-app:latest .
+            '''
         }
     }
 
