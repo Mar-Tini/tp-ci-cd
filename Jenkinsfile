@@ -64,28 +64,28 @@ pipeline {
         }
     
 
-        stage('Docker Build') {
+    //     stage('Docker Build') {
 
-        steps {
+    //     steps {
 
-            bat '''
-            docker build -t spring-app:latest .
-            '''
-        }
-    }
+    //         bat '''
+    //         docker build -t spring-app:latest .
+    //         '''
+    //     }
+    // }
 
-         stage('Deploy') {
+    //      stage('Deploy') {
 
-            steps {
+    //         steps {
 
-                bat '''
-                docker compose down
+    //             bat '''
+    //             docker compose down
 
-                docker compose up -d
-                '''
-            }
-        }
-    }
+    //             docker compose up -d
+    //             '''
+    //         }
+    //     }
+    // }
 
     post {
         always {
