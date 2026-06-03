@@ -62,7 +62,7 @@ pipeline {
                 '''
             }
         }
-    }
+    
 
         stage('Docker Build') {
 
@@ -71,6 +71,19 @@ pipeline {
             bat '''
             docker build -t spring-app:latest .
             '''
+        }
+    }
+
+         stage('Deploy') {
+
+            steps {
+
+                bat '''
+                docker compose down
+
+                docker compose up -d
+                '''
+            }
         }
     }
 
