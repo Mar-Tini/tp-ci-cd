@@ -27,14 +27,5 @@ services:
     ports:
       - "4041:4040"
 
-  app:
-
-    build: .
-
-    container_name: spring-app
-
-    ports:
-      - "8081:8080"
-
 volumes:
   maven_repo: 

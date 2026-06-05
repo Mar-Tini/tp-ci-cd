@@ -64,15 +64,14 @@ pipeline {
         }
     
 
-    //     stage('Docker Build') {
-
-    //     steps {
-
-    //         bat '''
-    //         docker build -t spring-app:latest .
-    //         '''
-    //     }
-    // }
+            stage('Docker Build Image') {
+                steps {
+                    bat '''
+                    docker build -t tp_ci_cd:latest .
+                    '''
+                }
+        }
+    }
 
     //      stage('Deploy') {
 
